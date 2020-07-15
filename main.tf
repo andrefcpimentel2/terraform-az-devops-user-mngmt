@@ -8,7 +8,7 @@ resource "azuredevops_user_entitlement" "user" {
 }
 
 data "azuredevops_group" "group" {
-  project_id = azuredevops_project.project.id
+  project_id = data.azuredevops_project.project.id
   name       = "Build Administrators"
 }
 
