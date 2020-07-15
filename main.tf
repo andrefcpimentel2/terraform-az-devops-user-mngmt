@@ -4,7 +4,8 @@ data "azuredevops_project" "project" {
 }
 
 resource "azuredevops_user_entitlement" "user" {
-  principal_name = var.user_principal_name
+  count          = length(var.user_principal_name)
+  principal_name = var.user_principal_name[count.index]
 }
 
 data "azuredevops_group" "group" {
@@ -13,8 +14,9 @@ data "azuredevops_group" "group" {
 }
 
 resource "azuredevops_group_membership" "membership" {
+  count          = length(var.user_principal_name)
   group = data.azuredevops_group.group.descriptor
   members = [
-    azuredevops_user_entitlement.user.descriptor
+    element(azuredevops_user_entitlement.user.*.descriptor, count.index)
   ]
 }
