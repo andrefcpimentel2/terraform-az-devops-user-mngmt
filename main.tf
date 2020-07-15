@@ -1,4 +1,4 @@
-data "azuredevops_projects" "project" {
+data "azuredevops_project" "project" {
   project_name = var.project_name
   
 }
