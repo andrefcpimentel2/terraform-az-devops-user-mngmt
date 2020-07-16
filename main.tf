@@ -1,3 +1,11 @@
+# Make sure to set the following environment variables:
+#   AZDO_PERSONAL_ACCESS_TOKEN
+#   AZDO_ORG_SERVICE_URL
+#   AZDO_GITHUB_SERVICE_CONNECTION_PAT
+provider "azuredevops" {
+  version = ">= 0.0.1"
+}
+
 data "azuredevops_project" "project" {
   project_name = var.project_name
   
